@@ -1,1 +1,1 @@
-yummy farts
+🔥 SKIBIDI - The Gen Alpha Programming Language 💀
