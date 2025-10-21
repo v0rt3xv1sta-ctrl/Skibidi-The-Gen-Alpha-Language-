@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔥 SKIBIDI IDE - SIGMA EDITION 💀</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1a4e 50%, #2d0a2d 100%);
+            font-family: 'Courier New', monospace;
+            color: #00ff88;
+            animation: bgShift 15s ease infinite;
+        }
+
+        @keyframes bgShift {
+            0%, 100% { background: linear-gradient(135deg, #0a0e27 0%, #1a1a4e 50%, #2d0a2d 100%); }
+            50% { background: linear-gradient(135deg, #1a1a4e 0%, #2d0a2d 50%, #0a0e27 100%); }
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            background: #00ff88;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+            gap: 20px;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            border-radius: 25px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .editor-panel {
+            border: 4px solid #00ff88;
+            background: rgba(15, 52, 96, 0.85);
+            box-shadow: 0 0 40px rgba(0, 255, 136, 0.4), inset 0 0 30px rgba(0, 255, 136, 0.1);
+        }
+
+        .output-panel {
+            border: 4px solid #ff006e;
+            background: rgba(45, 10, 45, 0.85);
+            box-shadow: 0 0 40px rgba(255, 0, 110, 0.4), inset 0 0 30px rgba(255, 0, 110, 0.1);
+        }
+
+        .panel-title {
+            background: linear-gradient(90deg, #00ff88 0%, #00cc6a 50%, #ff006e 100%);
+            background-size: 200% 200%;
+            color: #1a1a2e;
+            padding: 25px;
+            font-size: 32px;
+            font-weight: 900;
+            text-align: center;
+            animation: gradientShift 3s ease infinite, titlePulse 2s ease-in-out infinite;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes titlePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        textarea {
+            flex: 1;
+            background: rgba(10, 14, 39, 0.95);
+            color: #00ff88;
+            border: none;
+            padding: 25px;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            resize: none;
+            outline: none;
+            line-height: 1.8;
+        }
+
+        textarea::placeholder {
+            color: #00ff8866;
+        }
+
+        textarea:focus {
+            box-shadow: inset 0 0 30px rgba(0, 255, 136, 0.2);
+        }
+
+        #output {
+            flex: 1;
+            background: rgba(10, 14, 39, 0.95);
+            color: #00ff88;
+            padding: 25px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            line-height: 1.8;
+        }
+
+        #output::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        #output::-webkit-scrollbar-track {
+            background: rgba(26, 26, 46, 0.5);
+        }
+
+        #output::-webkit-scrollbar-thumb {
+            background: #00ff88;
+            border-radius: 6px;
+            border: 2px solid rgba(10, 14, 39, 0.95);
+        }
+
+        #output::-webkit-scrollbar-thumb:hover {
+            background: #00cc6a;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 15px;
+            padding: 20px;
+            background: rgba(22, 33, 62, 0.95);
+            border-top: 2px solid rgba(0, 255, 136, 0.3);
+        }
+
+        button {
+            flex: 1;
+            padding: 18px;
+            background: linear-gradient(135deg, #00ff88 0%, #00cc6a 100%);
+            color: #1a1a2e;
+            border: none;
+            border-radius: 15px;
+            font-size: 18px;
+            font-weight: 900;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            box-shadow: 0 8px 20px rgba(0, 255, 136, 0.3);
+        }
+
+        button:hover {
+            transform: translateY(-4px) scale(1.06);
+            box-shadow: 0 12px 35px rgba(0, 255, 136, 0.7);
+            text-shadow: 0 2px 10px rgba(26, 26, 46, 0.3);
+        }
+
+        button:active {
+            transform: translateY(-1px);
+        }
+
+        .clear-btn {
+            background: linear-gradient(135deg, #ff006e 0%, #ff4081 100%);
+            box-shadow: 0 8px 20px rgba(255, 0, 110, 0.3);
+        }
+
+        .clear-btn:hover {
+            box-shadow: 0 12px 35px rgba(255, 0, 110, 0.7);
+        }
+
+        .syntax-help {
+            background: rgba(22, 33, 62, 0.95);
+            color: #00ff88;
+            padding: 18px 25px;
+            border-top: 2px solid #00ff88;
+            font-size: 14px;
+            font-weight: bold;
+            line-height: 1.6;
+            text-shadow: 0 0 8px rgba(0, 255, 136, 0.3);
+        }
+
+        .error {
+            color: #ff006e;
+            font-weight: bold;
+            text-shadow: 0 0 15px rgba(255, 0, 110, 0.5);
+        }
+
+        .success {
+            color: #00ff88;
+            text-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+
+    <div class="container">
+        <div class="panel editor-panel">
+            <div class="panel-title">✏️ WRITE YA CODE (SIGMA)</div>
+            <textarea id="code-input" placeholder="// SKIBIDI CODE FR FR 💀
+LET THEM KNOW &quot;HELLO SIGMA&quot;
+count SIGMA GRIND 0
+NO CAP 3
+    LET THEM KNOW &quot;SKIBIDI&quot;
+    count RIZZ 1
+CAP
+LET THEM KNOW &quot;YOU JUST RAN SKIBIDI CODE&quot;"></textarea>
+            <div class="syntax-help">
+                💡 LET THEM KNOW=PRINT | SIGMA GRIND=VAR | NO CAP=LOOP | FR FR=IF | GYATT=INPUT | RIZZ=ADD | BASED=SUB | SLAY=MULT
+            </div>
+            <div class="button-container">
+                <button onclick="runCode()">▶️ RUN (NO CAP)</button>
+                <button class="clear-btn" onclick="clearCode()">🗑️ CLEAR CODE</button>
+                <button onclick="window.open('skibidi_docs.html', '_blank')" style="background: linear-gradient(135deg, #00ff88 0%, #00cc6a 100%); box-shadow: 0 8px 20px rgba(0, 255, 136, 0.3);">📚 DOCS</button>
+            </div>
+        </div>
+
+        <div class="panel output-panel">
+            <div class="panel-title">📺 OUTPUT (SIGMA MOMENT)</div>
+            <div id="output"></div>
+            <div class="button-container">
+                <button class="clear-btn" onclick="clearOutput()">CLEAR OUTPUT</button>
+                <button onclick="alert('Save docs.html in same folder, then click again!'); window.open('skibidi_docs.html', '_blank');" style="background: linear-gradient(135deg, #00ff88, #00cc6a); box-shadow: 0 8px 20px rgba(0, 255, 136, 0.3);">📚 DOCS</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Generate random stars
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 50; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.width = Math.random() * 3 + 'px';
+            star.style.height = star.style.width;
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starsContainer.appendChild(star);
+        }
+
+        class SkibidiInterpreter {
+            constructor() {
+                this.vars = {};
+                this.output = "";
+            }
+
+            run(code) {
+                this.output = "";
+                this.vars = {};
+                const lines = code.split('\n');
+                this.executeLines(lines, 0, lines.length);
+                return this.output;
+            }
+
+            executeLines(lines, start, end) {
+                for (let i = start; i < end; i++) {
+                    const line = lines[i].trim();
+                    if (!line || line.startsWith('//')) continue;
+
+                    if (line.startsWith('LET THEM KNOW')) {
+                        const msg = this.evalExpr(line.substring(13).trim());
+                        this.output += msg + '\n';
+                    }
+                    else if (line.includes('SIGMA GRIND')) {
+                        const parts = line.split('SIGMA GRIND');
+                        const varName = parts[0].trim();
+                        const value = this.evalExpr(parts[1].trim());
+                        this.vars[varName] = value;
+                    }
+                    else if (line.startsWith('NO CAP')) {
+                        const match = line.match(/NO CAP (\d+)/);
+                        if (match) {
+                            const count = parseInt(match[1]);
+                            const loopCode = [];
+                            i++;
+                            while (i < end && !lines[i].trim().startsWith('CAP')) {
+                                loopCode.push(lines[i]);
+                                i++;
+                            }
+                            for (let j = 0; j < count; j++) {
+                                this.executeLines(loopCode, 0, loopCode.length);
+                            }
+                        }
+                    }
+                    else if (line.startsWith('FR FR')) {
+                        const condition = line.substring(5).trim();
+                        if (this.evalCondition(condition)) {
+                            const ifCode = [];
+                            i++;
+                            while (i < end && !lines[i].trim().startsWith('NOPE')) {
+                                ifCode.push(lines[i]);
+                                i++;
+                            }
+                            this.executeLines(ifCode, 0, ifCode.length);
+                        }
+                    }
+                    else if (line.includes('RIZZ')) {
+                        const parts = line.split('RIZZ');
+                        const varName = parts[0].trim();
+                        const value = this.evalExpr(parts[1].trim());
+                        this.vars[varName] = (this.vars[varName] || 0) + value;
+                    }
+                    else if (line.includes('BASED')) {
+                        const parts = line.split('BASED');
+                        const varName = parts[0].trim();
+                        const value = this.evalExpr(parts[1].trim());
+                        this.vars[varName] = (this.vars[varName] || 0) - value;
+                    }
+                    else if (line.includes('SLAY')) {
+                        const parts = line.split('SLAY');
+                        const varName = parts[0].trim();
+                        const value = this.evalExpr(parts[1].trim());
+                        this.vars[varName] = (this.vars[varName] || 1) * value;
+                    }
+                }
+            }
+
+            evalExpr(expr) {
+                expr = expr.trim().replace(/^["']|["']$/g, '');
+                if (!isNaN(expr) && expr !== '') return parseInt(expr);
+                if (this.vars[expr] !== undefined) return this.vars[expr];
+                return expr;
+            }
+
+            evalCondition(cond) {
+                if (cond.includes('==')) {
+                    const [left, right] = cond.split('==').map(x => this.evalExpr(x.trim()));
+                    return left == right;
+                }
+                if (cond.includes('>')) {
+                    const [left, right] = cond.split('>').map(x => this.evalExpr(x.trim()));
+                    return left > right;
+                }
+                if (cond.includes('<')) {
+                    const [left, right] = cond.split('<').map(x => this.evalExpr(x.trim()));
+                    return left < right;
+                }
+                return false;
+            }
+        }
+
+        function runCode() {
+            const code = document.getElementById('code-input').value;
+            const output = document.getElementById('output');
+            
+            try {
+                const interpreter = new SkibidiInterpreter();
+                const result = interpreter.run(code);
+                output.innerHTML = '<span class="success">' + (result.trim() || "CODE RAN FR FR NO CAP 💀") + '</span>';
+            } catch (e) {
+                output.innerHTML = '<span class="error">ERROR BRO: ' + e.message + '</span>';
+            }
+        }
+
+        function clearOutput() {
+            document.getElementById('output').innerHTML = '';
+        }
+
+        function clearCode() {
+            document.getElementById('code-input').value = '';
+        }
+
+        document.getElementById('code-input').addEventListener('keydown', function(e) {
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+                this.value = this.value.substring(0, start) + '    ' + this.value.substring(end);
+                this.selectionStart = this.selectionEnd = start + 4;
+            }
+        });
+    </script>
+</body>
+</html>

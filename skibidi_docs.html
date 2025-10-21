@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📚 SKIBIDI DOCUMENTATION 💀</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1a4e 100%);
+            color: #00ff88;
+            font-family: 'Courier New', monospace;
+            line-height: 1.8;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 48px;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #00ff88, #ff006e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+            letter-spacing: 3px;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 20px;
+            color: #00ff88;
+            margin-bottom: 40px;
+            opacity: 0.8;
+        }
+
+        .section {
+            background: rgba(15, 52, 96, 0.8);
+            border: 2px solid #00ff88;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+        }
+
+        .section h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #00ff88;
+            border-bottom: 3px solid #00ff88;
+            padding-bottom: 10px;
+        }
+
+        .command {
+            background: rgba(10, 14, 39, 0.9);
+            border-left: 4px solid #ff006e;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+
+        .command-name {
+            font-size: 18px;
+            color: #ff006e;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .command-desc {
+            color: #00ff88;
+            margin-bottom: 10px;
+        }
+
+        .command-syntax {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 12px;
+            border-radius: 6px;
+            color: #00cc6a;
+            font-weight: bold;
+            margin-bottom: 10px;
+            word-break: break-word;
+        }
+
+        .example {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            border-left: 3px solid #00ff88;
+        }
+
+        .example-title {
+            color: #00ff88;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .example-code {
+            background: rgba(10, 14, 39, 0.9);
+            padding: 12px;
+            border-radius: 4px;
+            color: #00cc6a;
+            overflow-x: auto;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .example-output {
+            background: rgba(10, 14, 39, 0.9);
+            padding: 12px;
+            border-radius: 4px;
+            color: #00ff88;
+            font-size: 14px;
+        }
+
+        .output-label {
+            color: #ff006e;
+            font-weight: bold;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .table th, .table td {
+            border: 1px solid #00ff88;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .table th {
+            background: rgba(0, 255, 136, 0.1);
+            color: #00ff88;
+            font-weight: bold;
+        }
+
+        .table td {
+            background: rgba(10, 14, 39, 0.5);
+        }
+
+        .tips {
+            background: rgba(255, 0, 110, 0.1);
+            border: 2px solid #ff006e;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .tips-title {
+            color: #ff006e;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .tips p {
+            margin: 8px 0;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 20px;
+            border-top: 2px solid #00ff88;
+            color: #00ff88;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button onclick="window.location.href='skibidi.html'" style="position: fixed; top: 20px; right: 20px; padding: 15px 25px; background: linear-gradient(135deg, #ff006e, #ff4081); color: #1a1a2e; border: none; border-radius: 12px; font-size: 16px; font-weight: bold; cursor: pointer; z-index: 1000; box-shadow: 0 8px 20px rgba(255, 0, 110, 0.3);">⬅️ BACK TO IDE</button>
+
+        <h1>📚 SKIBIDI SCRIPT DOCUMENTATION 💀</h1>
+        <p class="subtitle">The Gen Alpha Programming Language - FR FR NO CAP</p>
+
+        <!-- INTRO -->
+        <div class="section">
+            <h2>🔥 WHAT IS SKIBIDI?</h2>
+            <p>SKIBIDI is a Gen Alpha esoteric programming language designed to make coding absolutely UNHINGED and SIGMA. It uses Gen Alpha slang as commands, making it the most based language ever created.</p>
+            <p style="margin-top: 15px;">Every program in SKIBIDI is genuinely executable and can do real things - variables, loops, conditionals, and output. It's stupid, it's funny, it's FIRE!</p>
+        </div>
+
+        <!-- BASIC COMMANDS -->
+        <div class="section">
+            <h2>⚡ BASIC COMMANDS</h2>
+
+            <div class="command">
+                <div class="command-name">LET THEM KNOW</div>
+                <div class="command-desc">Print/Output text to the screen</div>
+                <div class="command-syntax">LET THEM KNOW "your message here"</div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <div class="example-code">LET THEM KNOW "SKIBIDI"</div>
+                    <div class="output-label">Output:</div>
+                    <div class="example-output">SKIBIDI</div>
+                </div>
+            </div>
+
+            <div class="command">
+                <div class="command-name">SIGMA GRIND</div>
+                <div class="command-desc">Create or assign a variable</div>
+                <div class="command-syntax">variable_name SIGMA GRIND value</div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <div class="example-code">count SIGMA GRIND 0
+my_text SIGMA GRIND "hello"</div>
+                    <div class="output-label">Creates variables 'count' and 'my_text'</div>
+                </div>
+            </div>
+
+            <div class="command">
+                <div class="command-name">RIZZ</div>
+                <div class="command-desc">Add to a variable</div>
+                <div class="command-syntax">variable_name RIZZ amount</div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <div class="example-code">count SIGMA GRIND 5
+count RIZZ 3
+LET THEM KNOW count</div>
+                    <div class="output-label">Output:</div>
+                    <div class="example-output">8</div>
+                </div>
+            </div>
+
+            <div class="command">
+                <div class="command-name">BASED</div>
+                <div class="command-desc">Subtract from a variable</div>
+                <div class="command-syntax">variable_name BASED amount</div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <div class="example-code">num SIGMA GRIND 10
+num BASED 3
+LET THEM KNOW num</div>
+                    <div class="output-label">Output:</div>
+                    <div class="example-output">7</div>
+                </div>
+            </div>
+
+            <div class="command">
+                <div class="command-name">SLAY</div>
+                <div class="command-desc">Multiply a variable</div>
+                <div class="command-syntax">variable_name SLAY amount</div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <div class="example-code">x SIGMA GRIND 4
+x SLAY 5
+LET THEM KNOW x</div>
+                    <div class="output-label">Output:</div>
+                    <div class="example-output">20</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LOOPS -->
+        <div class="section">
+            <h2>🔁 LOOPS - NO CAP</h2>
+
+            <div class="command">
+                <div class="command-name">NO CAP</div>
+                <div class="command-desc">Loop N times</div>
+                <div class="command-syntax">NO CAP number_of_times
+    // code here
+CAP</div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <div class="example-code">NO CAP 3
+    LET THEM KNOW "SIGMA"
+CAP</div>
+                    <div class="output-label">Output:</div>
+                    <div class="example-output">SIGMA
+SIGMA
+SIGMA</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONDITIONALS -->
+        <div class="section">
+            <h2>❓ CONDITIONALS - FR FR</h2>
+
+            <div class="command">
+                <div class="command-name">FR FR (If Statement)</div>
+                <div class="command-desc">Execute code if condition is true</div>
+                <div class="command-syntax">FR FR condition
+    // code if true
+NOPE</div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <div class="example-code">x SIGMA GRIND 5
+FR FR x > 3
+    LET THEM KNOW "X IS BIG"
+NOPE</div>
+                    <div class="output-label">Output:</div>
+                    <div class="example-output">X IS BIG</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 20px;">
+                <p style="font-weight: bold; color: #00ff88;">Supported Conditions:</p>
+                <table class="table">
+                    <tr>
+                        <th>Operator</th>
+                        <th>Meaning</th>
+                        <th>Example</th>
+                    </tr>
+                    <tr>
+                        <td>==</td>
+                        <td>Equal to</td>
+                        <td>x == 5</td>
+                    </tr>
+                    <tr>
+                        <td>></td>
+                        <td>Greater than</td>
+                        <td>x > 3</td>
+                    </tr>
+                    <tr>
+                        <td><</td>
+                        <td>Less than</td>
+                        <td>x < 10</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- COMPLETE EXAMPLE -->
+        <div class="section">
+            <h2>🎮 COMPLETE PROGRAM EXAMPLE</h2>
+            <div class="example">
+                <div class="example-title">Number Counter Program:</div>
+                <div class="example-code">// THIS IS A COMMENT
+LET THEM KNOW "SIGMA COUNTER TIME"
+
+counter SIGMA GRIND 0
+
+NO CAP 5
+    counter RIZZ 1
+    LET THEM KNOW "COUNT: "
+    LET THEM KNOW counter
+CAP
+
+LET THEM KNOW "DONE SIGMA"</div>
+                <div class="output-label">Output:</div>
+                <div class="example-output">SIGMA COUNTER TIME
+COUNT: 1
+COUNT: 2
+COUNT: 3
+COUNT: 4
+COUNT: 5
+DONE SIGMA</div>
+            </div>
+        </div>
+
+        <!-- TIPS -->
+        <div class="tips">
+            <div class="tips-title">💡 PRO TIPS (SIGMA EDITION)</div>
+            <p>✅ Use // for comments - they get ignored</p>
+            <p>✅ Variable names are CASE SENSITIVE bru</p>
+            <p>✅ Strings need quotes: "like this"</p>
+            <p>✅ Numbers don't need quotes: just write 42</p>
+            <p>✅ Indent your code with spaces (looks sick)</p>
+            <p>✅ CAP means end of loop, NOPE means end of if</p>
+            <p>✅ Mix commands together for PEAK SIGMA ENERGY</p>
+        </div>
+
+        <!-- CHEAT SHEET -->
+        <div class="section">
+            <h2>📋 QUICK REFERENCE</h2>
+            <table class="table">
+                <tr>
+                    <th>Command</th>
+                    <th>What It Does</th>
+                    <th>Example</th>
+                </tr>
+                <tr>
+                    <td>LET THEM KNOW</td>
+                    <td>Print output</td>
+                    <td>LET THEM KNOW "hello"</td>
+                </tr>
+                <tr>
+                    <td>SIGMA GRIND</td>
+                    <td>Make variable</td>
+                    <td>x SIGMA GRIND 10</td>
+                </tr>
+                <tr>
+                    <td>RIZZ</td>
+                    <td>Add</td>
+                    <td>x RIZZ 5</td>
+                </tr>
+                <tr>
+                    <td>BASED</td>
+                    <td>Subtract</td>
+                    <td>x BASED 3</td>
+                </tr>
+                <tr>
+                    <td>SLAY</td>
+                    <td>Multiply</td>
+                    <td>x SLAY 2</td>
+                </tr>
+                <tr>
+                    <td>NO CAP ... CAP</td>
+                    <td>Loop</td>
+                    <td>NO CAP 3</td>
+                </tr>
+                <tr>
+                    <td>FR FR ... NOPE</td>
+                    <td>If statement</td>
+                    <td>FR FR x > 5</td>
+                </tr>
+            </table>
+        </div>
+
+        <footer>
+            <p>🔥 SKIBIDI SCRIPT - THE MOST SIGMA PROGRAMMING LANGUAGE EVER 💀</p>
+            <p>Created by Gen Alpha for Gen Alpha | NO CAP FR FR</p>
+        </footer>
+    </div>
+</body>
+</html>
